@@ -1,11 +1,11 @@
 import "./App.css";
 
-import Map from "./components/Map";
+import MapLayer from "./components/MapLayer";
 
 function App() {
 	return (
-		<div className="App">
-			<Map></Map>
+		<div className="w-screen h-screen">
+			<MapLayer />
 		</div>
 	);
 }
