@@ -24,13 +24,11 @@ export default function MapLayer() {
 		navigator.geolocation.getCurrentPosition(setLocation);
 	}, []);
 
-	useEffect(() => {
-		setViewState({ ...viewState, ...location.coords });
-	}, [location]);
+	useEffect(() => setViewState({ ...viewState, longitude: location.coords.longitude, latitude: location.coords.latitude }), [location]);
 
 	return (
 		<Map
-			initialViewState={viewState}
+			{...viewState}
 			onMove={(event) => setViewState(event.viewState)}
 			mapLib={maplibregl}
 			minZoom={7}
@@ -41,7 +39,7 @@ export default function MapLayer() {
 			]}
 			mapStyle="https://api.maptiler.com/maps/e3048aa2-7f9f-4e85-a78b-985e965da0a4/style.json?key=wsrvM5VV1ml8XRwjH9Ws">
 			<Marker longitude={location.coords.longitude} latitude={location.coords.latitude}>
-				<img src="/icons/LocationMarker.svg" alt="Your Location" />
+				<img src="/icons/LocationMarker.svg" alt="Your Location" className="w-4 h-4 sm:w-6 sm:h-6" />
 			</Marker>
 		</Map>
 	);
